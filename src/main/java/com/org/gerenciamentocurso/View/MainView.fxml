@@ -3,29 +3,33 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.org.gerenciamentocurso.Controller.MainController">
+    <children>
+        <!-- MenuBar no topo -->
+        <MenuBar>
+            <Menu text="Cadastros">
+                <MenuItem onAction="#abrirCursoView" text="Cursos" />
+                <MenuItem onAction="#abrirProfessorView" text="Professores" />
+                <MenuItem onAction="#abrirDisciplinaView" text="Disciplinas" />
+                <MenuItem onAction="#abrirTurmaView" text="Turmas" />
+            </Menu>
+        </MenuBar>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" >
-   <children>
-      <MenuBar>
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </children>
+        <!-- Área de conteúdo dinâmica -->
+        <AnchorPane fx:id="conteudoArea" VBox.vgrow="ALWAYS">
+            <children>
+                <!-- Conteúdo inicial -->
+                <VBox alignment="CENTER" spacing="20" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+                    <Text fill="#d906e8" style="-fx-font-size: 25px; -fx-font-weight: bold;" text="Bem-vindo ao Sistema de Gerenciamento de Cursos!" />
+                    <Text fill="#da1313" style="-fx-font-size: 15px;" text="Use o menu acima para navegar entre as opções." />
+                </VBox>
+            </children>
+        </AnchorPane>
+
+    </children>
+
 </VBox>

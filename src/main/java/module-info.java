@@ -4,6 +4,7 @@ module com.org.gerenciamentocurso {
     requires jakarta.persistence;
     requires static lombok;
 
+    opens com.org.gerenciamentocurso.Controller to javafx.fxml;
 
     opens com.org.gerenciamentocurso to javafx.fxml;
     exports com.org.gerenciamentocurso.Controller;

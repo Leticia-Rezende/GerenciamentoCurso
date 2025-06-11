@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="484.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.org.gerenciamentocurso.Controller.CursoController">
+
+    <VBox layoutX="7.0" layoutY="15.0" prefHeight="448.0" prefWidth="584.0" spacing="10" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="15.0">
+        <!-- Formulário -->
+        <HBox spacing="10">
+            <Label text="Nome:" />
+            <TextField fx:id="nomeField" />
+            <Label text="Carga Horária:" />
+            <TextField fx:id="cargaHorariaField" />
+        </HBox>
+
+        <!-- Botões -->
+        <HBox spacing="10">
+            <Button onAction="#salvarCurso" text="Salvar" />
+            <Button onAction="#editarCurso" text="Editar" />
+            <Button onAction="#excluirCurso" text="Excluir" />
+            <Button onAction="#atualizarLista" text="Atualizar Lista" />
+        </HBox>
+
+        <!-- Tabela -->
+        <TableView fx:id="cursoTable">
+            <columns>
+                <TableColumn fx:id="colNome" prefWidth="200" text="Nome" />
+                <TableColumn fx:id="colCargaHoraria" prefWidth="150" text="Carga Horária" />
+            </columns>
+        </TableView>
+    </VBox>
+
+</AnchorPane>
