@@ -1,7 +1,7 @@
 package com.org.gerenciamentocurso.DAO;
 
-import com.org.gerenciamentocurso.Model.Curso;
-import com.org.gerenciamentocurso.Model.Disciplina;
+import com.org.gerenciamentocurso.Model.Professor;
+import com.org.gerenciamentocurso.Model.Turma;
 import com.org.gerenciamentocurso.Utils.JPAUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -9,24 +9,24 @@ import jakarta.persistence.Persistence;
 
 import java.util.List;
 
-public class DisciplinaDAO {
+public class TurmaDAO {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
 
     // Método para salvar um novo curso no banco de dados
-    public void salvar(Disciplina disciplina){
+    public void salvar(Turma turma){
         //Cria uma instância do EntityManager
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            em.persist(disciplina);
+            em.persist(turma);
             em.getTransaction().commit();
         }
     }
 
     //Metodo para editar uma materia existente no banco de dados
-    public void  editar (Disciplina aluno){
+    public void  editar (Turma sala){
         try (EntityManager em = emf.createEntityManager()){
             em.getTransaction().begin(); // Inicia uma transação
-            em.merge(aluno); // Atualiza o objeto no banco de dados
+            em.merge(sala); // Atualiza o objeto no banco de dados
             em.getTransaction().commit(); // Confirma a transação
         }
     }
@@ -35,27 +35,27 @@ public class DisciplinaDAO {
     public void excluir (Long id){
         try (EntityManager em = emf.createEntityManager()){
             em.getTransaction().begin(); //Inicia uma transação
-            Disciplina disciplina = em.find(Disciplina.class, id); // Busca o usuário pelo ID
-            if (disciplina!= null){
-                em.remove(disciplina); //Remove o curso do banco de dados
+            Turma turma = em.find(Turma.class, id); // Busca o usuário pelo ID
+            if (turma!= null){
+                em.remove(turma); //Remove o curso do banco de dados
             }
             em.getTransaction().commit(); //Confirma a transação
         }
     }
 
     // Método para buscar curso por ID
-    public Disciplina buscarPorId(Long id) {
+    public Turma buscarPorId(Long id) {
         try (EntityManager em =  JPAUtil.getEntityManager()) { //emf.createEntityManager())
-            return em.find(Disciplina.class, id); // Retorna o livro ou null se não encontrado
+            return em.find(Turma.class, id); // Retorna o livro ou null se não encontrado
         }
     }
 
     //Metodo para listar todos os cursos dos bancos de dados
-    public List<Disciplina> listar () {
+    public List<Turma> listar () {
         EntityManager em = emf.createEntityManager(); //Cria uma instância do EntityManeger
         try {
             //Executa uma consulta JPQL para buscar todos os usuários
-            return  em.createQuery("SELECT u FROM Disciplina u ", Disciplina.class).getResultList();
+            return  em.createQuery("SELECT u FROM Turma u ", Turma.class).getResultList();
         } finally {
             em.close(); // Fecha o EntityManeher para liberar recursos
         }
