@@ -31,6 +31,7 @@ public class CursoController {
 
     @FXML
     public void atualizarLista() {
+
         cursoTable.getItems().setAll(cursoDAO.buscarPorId(1L)); //Busca apenas pelo id 1
     }
 

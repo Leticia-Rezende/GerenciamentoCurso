@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane  prefHeight="484.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.org.gerenciamentocurso.Controller.TurmaController">
+    <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+        <HBox spacing="10">
+            <Label text="Semestre:"/>
+            <TextField fx:id="semestreField"/>
+            <Label text="Horário:"/>
+            <TextField fx:id="horarioField"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Label text="Disciplina:"/>
+            <ComboBox fx:id="disciplinaComboBox"/>
+            <Label text="Professor:"/>
+            <ComboBox fx:id="professorComboBox"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Button text="Novo" onAction="#salvarTurma"/>
+            <Button text="Editar" onAction="#editarTurma"/>
+            <Button text="Remover" onAction="#excluirTurma"/>
+            <Button text="Atualizar Lista" onAction="#atualizarLista"/>
+        </HBox>
+
+        <TableView fx:id="turmaTable">
+            <columns>
+                <TableColumn fx:id="colSemestre" text="Semestre" prefWidth="100"/>
+                <TableColumn fx:id="colDisciplina" text="Disciplina" prefWidth="200"/>
+                <TableColumn fx:id="colProfessor" text="Professor" prefWidth="200"/>
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

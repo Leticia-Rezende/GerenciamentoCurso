@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane  prefHeight="484.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.org.gerenciamentocurso.Controller.ProfessorController">
+    <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+        <HBox spacing="10">
+            <Label text="Nome:"/>
+            <TextField fx:id="nomeField"/>
+            <Label text="Email:"/>
+            <TextField fx:id="emailField"/>
+            <Label text="Formação:"/>
+            <TextField fx:id="formacaoField"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Button text="Novo" onAction="#salvarProfessor"/>
+            <Button text="Editar" onAction="#editarProfessor"/>
+            <Button text="Remover" onAction="#excluirProfessor"/>
+            <Button text="Atualizar Lista" onAction="#atualizarLista"/>
+        </HBox>
+
+        <TableView fx:id="professorTable">
+            <columns>
+                <TableColumn fx:id="colNome" text="Nome" prefWidth="150"/>
+                <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+                <TableColumn fx:id="colFormacao" text="Formação" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>
