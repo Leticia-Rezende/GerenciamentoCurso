@@ -9,10 +9,12 @@ public class JPAUtil {
                 Persistence.createEntityManagerFactory("sistemaPU"); // Nome do persistence-unit
 
         public static EntityManager getEntityManager() {
+
             return emf.createEntityManager();
         }
 
         public static void close() {
+
             emf.close();
         }
 }

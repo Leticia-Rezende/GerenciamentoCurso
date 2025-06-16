@@ -8,10 +8,7 @@ import com.org.gerenciamentocurso.Model.Professor;
 import com.org.gerenciamentocurso.Model.Turma;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TurmaController {
@@ -32,6 +29,15 @@ public class TurmaController {
     @FXML
     private TableColumn<Turma, String> colProfessor;
 
+    @FXML
+    private Button BtnsalvarTurma;
+    @FXML
+    private Button BtneditarTurma;
+    @FXML
+    private Button BtnexcluirTurma;
+    @FXML
+    private Button BtnatualizaListaTurma;
+
     private final TurmaDAO turmaDAO = new TurmaDAO();
     private final DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
     private final ProfessorDAO professorDAO = new ProfessorDAO();
@@ -45,27 +51,28 @@ public class TurmaController {
         disciplinaComboBox.getItems().setAll(disciplinaDAO.findAll());
         professorComboBox.getItems().setAll(professorDAO.findAll());
 
-        atualizarLista();
+        onBtnatualizarListauTurma();
     }
 
     @FXML
-    public void atualizarLista() {
+    public void onBtnatualizarListauTurma() {
+
         turmaTable.getItems().setAll(turmaDAO.buscarPorId(1L));
     }
 
     @FXML
-    public void salvarTurma() {
+    public void onBtnsalvarTurma() {
         Turma t = new Turma();
         t.setSemestre(semestreField.getText());
         t.setHorario(horarioField.getText());
         t.setDisciplina(disciplinaComboBox.getValue());
         t.setProfessor(professorComboBox.getValue());
         turmaDAO.salvar(t);
-        atualizarLista();
+        onBtnatualizarListauTurma();
     }
 
     @FXML
-    public void editarTurma() {
+    public void onBtneditarTurma() {
         Turma selecionada = turmaTable.getSelectionModel().getSelectedItem();
         if (selecionada != null) {
             selecionada.setSemestre(semestreField.getText());
@@ -73,16 +80,16 @@ public class TurmaController {
             selecionada.setDisciplina(disciplinaComboBox.getValue());
             selecionada.setProfessor(professorComboBox.getValue());
             turmaDAO.editar(selecionada);
-            atualizarLista();
+            onBtnatualizarListauTurma();
         }
     }
 
     @FXML
-    public void excluirTurma() {
+    public void onBtnexcluirTurma() {
         Turma selecionada = turmaTable.getSelectionModel().getSelectedItem();
         if (selecionada != null) {
             turmaDAO.excluir(selecionada.getId());
-            atualizarLista();
+            onBtnatualizarListauTurma();
         }
     }
 }

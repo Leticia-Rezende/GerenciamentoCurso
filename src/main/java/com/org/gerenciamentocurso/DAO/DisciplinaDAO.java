@@ -2,11 +2,13 @@ package com.org.gerenciamentocurso.DAO;
 
 import com.org.gerenciamentocurso.Model.Curso;
 import com.org.gerenciamentocurso.Model.Disciplina;
+import com.org.gerenciamentocurso.Model.Turma;
 import com.org.gerenciamentocurso.Utils.JPAUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DisciplinaDAO {
@@ -51,7 +53,7 @@ public class DisciplinaDAO {
     }
 
     //Metodo para listar todos os cursos dos bancos de dados
-    public List<Disciplina> listar () {
+    public List<Disciplina> findAll() {
         EntityManager em = emf.createEntityManager(); //Cria uma instância do EntityManeger
         try {
             //Executa uma consulta JPQL para buscar todos os usuários

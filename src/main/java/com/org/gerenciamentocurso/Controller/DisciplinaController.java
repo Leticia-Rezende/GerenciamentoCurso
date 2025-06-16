@@ -4,12 +4,10 @@ import com.org.gerenciamentocurso.DAO.DisciplinaDAO;
 import com.org.gerenciamentocurso.Model.Curso;
 import com.org.gerenciamentocurso.Model.Disciplina;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import com.org.gerenciamentocurso.DAO.CursoDAO;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.beans.property.ReadOnlyStringWrapper;
 
 public class DisciplinaController {
     @FXML
@@ -20,7 +18,14 @@ public class DisciplinaController {
     @FXML private TableColumn<Disciplina, String> colNome;
     @FXML private TableColumn<Disciplina, String> colDescricao;
     @FXML private TableColumn<Disciplina, String> colCurso;
-
+    @FXML
+    private Button BtnsalvarDisciplina;
+    @FXML
+    private Button BtneditarDisciplina;
+    @FXML
+    private Button BtnexcluirDisciplina;
+    @FXML
+    private Button BtnatualizaListaDisciplina;
     private final DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
     private final CursoDAO cursoDAO = new CursoDAO();
 
@@ -30,45 +35,45 @@ public class DisciplinaController {
         colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         colCurso.setCellValueFactory(c -> new ReadOnlyStringWrapper(c.getValue().getCurso().getNome()));
 
-        cursoComboBox.getItems().setAll(cursoDAO.findAll());
+        cursoComboBox.getItems().setAll((Curso) cursoDAO.findAll());
 
-        atualizarLista();
+        onBtnatualizarListaDisciplina();
     }
 
     @FXML
-    public void atualizarLista() {
+    public void onBtnatualizarListaDisciplina() {
 
         disciplinaTable.getItems().setAll(disciplinaDAO.buscarPorId(1L));
     }
 
     @FXML
-    public void salvarDisciplina() {
+    public void onBtnsalvarDisciplina() {
         Disciplina d = new Disciplina();
         d.setNome(nomeField.getText());
         d.setDescricao(descricaoField.getText());
         d.setCurso(cursoComboBox.getValue());
         disciplinaDAO.salvar(d);
-        atualizarLista();
+        onBtnatualizarListaDisciplina();
     }
 
     @FXML
-    public void editarDisciplina() {
+    public void onBtneditarDisciplina() {
         Disciplina selecionada = disciplinaTable.getSelectionModel().getSelectedItem();
         if (selecionada != null) {
             selecionada.setNome(nomeField.getText());
             selecionada.setDescricao(descricaoField.getText());
             selecionada.setCurso(cursoComboBox.getValue());
             disciplinaDAO.editar(selecionada);
-            atualizarLista();
+            onBtnatualizarListaDisciplina();
         }
     }
 
     @FXML
-    public void excluirDisciplina() {
+    public void onBtnxcluirDisciplina() {
         Disciplina selecionada = disciplinaTable.getSelectionModel().getSelectedItem();
         if (selecionada != null) {
             disciplinaDAO.excluir(selecionada.getId());
-            atualizarLista();
+            onBtnatualizarListaDisciplina();
         }
     }
 }

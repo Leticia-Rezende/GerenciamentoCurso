@@ -22,10 +22,10 @@
 
         <!-- Botões -->
         <HBox spacing="10">
-            <Button onAction="#salvarCurso" text="Salvar" />
-            <Button onAction="#editarCurso" text="Editar" />
-            <Button onAction="#excluirCurso" text="Excluir" />
-            <Button onAction="#atualizarLista" text="Atualizar Lista" />
+            <Button fx:id="BtnsalvarCurso" onAction="#onBtnsalvarCurso" text="Salvar" />
+            <Button fx:id="BtneditarCurso" onAction="#onBtneditarCurso" text="Editar" />
+            <Button fx:id="BtnexcluirCurso" onAction="#onBtnexcluirCurso" text="Excluir" />
+            <Button fx:id="BtnatualizaListaCurso" onAction="#onBtnatualizarListaCurso" text="Atualizar Lista" />
         </HBox>
 
         <!-- Tabela -->
