@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="484.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.org.gerenciamentocurso.Controller.ProfessorController">
+<AnchorPane prefHeight="497.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.org.gerenciamentocurso.Controller.ProfessorController">
     <VBox spacing="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
         <HBox spacing="10">
             <Label text="Nome:" />
@@ -24,7 +24,7 @@
             <Button fx:id="BtnsalvarProfessor" onAction="#onBtnsalvarProfessor" text="Salvar" />
             <Button fx:id="BtneditarProfessor" onAction="#onBtneditarProfessor" text="Editar" />
             <Button fx:id="BtnexcluirProfessor" onAction="#onBtnexcluirProfessor" text="Excluir" />
-            <Button fx:id="BtnatualizaListaProfessor" onAction="#onBtnatualizarLista" text="Atualizar Lista" />
+            <Button fx:id="BtnatualizaListaProfessor" onAction="#onBtnatualizarListaProfessor" text="Atualizar Lista" />
         </HBox>
 
         <TableView fx:id="professorTable">

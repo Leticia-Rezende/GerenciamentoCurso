@@ -34,7 +34,7 @@ public class ProfessorController {
     @FXML
     private Button BtnatualizaListaProfessor;
 
-    private final ProfessorDAO professorDAO = new ProfessorDAO();
+    //private final ProfessorDAO professorDAO = new ProfessorDAO();
 
     @FXML
     public void initialize() {
@@ -48,7 +48,7 @@ public class ProfessorController {
     @FXML
     public void onBtnatualizarListaProfessor() {
 
-        professorTable.getItems().setAll(professorDAO.buscarPorId(1L));
+        ///professorTable.getItems().setAll(professorDAO.buscarPorId(1L));
     }
 
     @FXML
@@ -57,7 +57,7 @@ public class ProfessorController {
         p.setNome(nomeField.getText());
         p.setEmail(emailField.getText());
         p.setFormacao(formacaoField.getText());
-        professorDAO.salvar(p);
+        //professorDAO.salvar(p);
         onBtnatualizarListaProfessor();
     }
 
@@ -68,7 +68,7 @@ public class ProfessorController {
             selecionado.setNome(nomeField.getText());
             selecionado.setEmail(emailField.getText());
             selecionado.setFormacao(formacaoField.getText());
-            professorDAO.editar(selecionado);
+            //professorDAO.editar(selecionado);
             onBtnatualizarListaProfessor();
         }
     }
@@ -77,7 +77,7 @@ public class ProfessorController {
     public void onBtnexcluirProfessor() {
         Professor selecionado = professorTable.getSelectionModel().getSelectedItem();
         if (selecionado != null) {
-            professorDAO.excluir(selecionado.getId());
+            //professorDAO.excluir(selecionado.getId());
             onBtnatualizarListaProfessor();
         }
     }

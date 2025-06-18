@@ -30,7 +30,7 @@
             <Button fx:id="BtnsalvarTurma" onAction="#onBtnsalvarTurma" text="Salvar" />
             <Button fx:id="BtneditarTurma" onAction="#onBtneditarTurma" text="Editar" />
             <Button fx:id="BtnexcluirTurma" onAction="#onBtnexcluirTurma" text="Excluir" />
-            <Button fx:id="BtnatualizaListaTurma" onAction="#onBtnatualizarLista" text="Atualizar Lista" />
+            <Button fx:id="BtnatualizaListaTurma" onAction="#onBtnatualizarListauTurma" text="Atualizar Lista" />
         </HBox>
 
         <TableView fx:id="turmaTable">

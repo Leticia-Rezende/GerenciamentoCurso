@@ -38,7 +38,7 @@ public class TurmaController {
     @FXML
     private Button BtnatualizaListaTurma;
 
-    private final TurmaDAO turmaDAO = new TurmaDAO();
+    //private final TurmaDAO turmaDAO = new TurmaDAO();
     private final DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
     private final ProfessorDAO professorDAO = new ProfessorDAO();
 
@@ -57,7 +57,7 @@ public class TurmaController {
     @FXML
     public void onBtnatualizarListauTurma() {
 
-        turmaTable.getItems().setAll(turmaDAO.buscarPorId(1L));
+        //turmaTable.getItems().setAll(turmaDAO.buscarPorId(1L));
     }
 
     @FXML
@@ -67,7 +67,7 @@ public class TurmaController {
         t.setHorario(horarioField.getText());
         t.setDisciplina(disciplinaComboBox.getValue());
         t.setProfessor(professorComboBox.getValue());
-        turmaDAO.salvar(t);
+        //turmaDAO.salvar(t);
         onBtnatualizarListauTurma();
     }
 
@@ -79,7 +79,7 @@ public class TurmaController {
             selecionada.setHorario(horarioField.getText());
             selecionada.setDisciplina(disciplinaComboBox.getValue());
             selecionada.setProfessor(professorComboBox.getValue());
-            turmaDAO.editar(selecionada);
+            //turmaDAO.editar(selecionada);
             onBtnatualizarListauTurma();
         }
     }
@@ -88,7 +88,7 @@ public class TurmaController {
     public void onBtnexcluirTurma() {
         Turma selecionada = turmaTable.getSelectionModel().getSelectedItem();
         if (selecionada != null) {
-            turmaDAO.excluir(selecionada.getId());
+            //turmaDAO.excluir(selecionada.getId());
             onBtnatualizarListauTurma();
         }
     }

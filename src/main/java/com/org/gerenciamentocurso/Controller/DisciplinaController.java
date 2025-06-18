@@ -26,8 +26,8 @@ public class DisciplinaController {
     private Button BtnexcluirDisciplina;
     @FXML
     private Button BtnatualizaListaDisciplina;
-    private final DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
-    private final CursoDAO cursoDAO = new CursoDAO();
+    //private final DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
+    //private final CursoDAO cursoDAO = new CursoDAO();
 
     @FXML
     public void initialize() {
@@ -35,7 +35,7 @@ public class DisciplinaController {
         colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         colCurso.setCellValueFactory(c -> new ReadOnlyStringWrapper(c.getValue().getCurso().getNome()));
 
-        cursoComboBox.getItems().setAll((Curso) cursoDAO.findAll());
+        //cursoComboBox.getItems().setAll((Curso) cursoDAO.findAll());
 
         onBtnatualizarListaDisciplina();
     }
@@ -43,7 +43,7 @@ public class DisciplinaController {
     @FXML
     public void onBtnatualizarListaDisciplina() {
 
-        disciplinaTable.getItems().setAll(disciplinaDAO.buscarPorId(1L));
+        //disciplinaTable.getItems().setAll(disciplinaDAO.buscarPorId(1L));
     }
 
     @FXML
@@ -52,7 +52,7 @@ public class DisciplinaController {
         d.setNome(nomeField.getText());
         d.setDescricao(descricaoField.getText());
         d.setCurso(cursoComboBox.getValue());
-        disciplinaDAO.salvar(d);
+        //disciplinaDAO.salvar(d);
         onBtnatualizarListaDisciplina();
     }
 
@@ -63,7 +63,7 @@ public class DisciplinaController {
             selecionada.setNome(nomeField.getText());
             selecionada.setDescricao(descricaoField.getText());
             selecionada.setCurso(cursoComboBox.getValue());
-            disciplinaDAO.editar(selecionada);
+            //disciplinaDAO.editar(selecionada);
             onBtnatualizarListaDisciplina();
         }
     }
@@ -72,7 +72,7 @@ public class DisciplinaController {
     public void onBtnxcluirDisciplina() {
         Disciplina selecionada = disciplinaTable.getSelectionModel().getSelectedItem();
         if (selecionada != null) {
-            disciplinaDAO.excluir(selecionada.getId());
+            //disciplinaDAO.excluir(selecionada.getId());
             onBtnatualizarListaDisciplina();
         }
     }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProfessorDAO {
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("sistemaPU");
 
     // Método para salvar um novo curso no banco de dados
     public void salvar(Professor professor){

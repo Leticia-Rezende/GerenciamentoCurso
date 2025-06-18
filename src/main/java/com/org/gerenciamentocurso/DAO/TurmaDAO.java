@@ -10,7 +10,7 @@ import jakarta.persistence.Persistence;
 import java.util.List;
 
 public class TurmaDAO {
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("sistemaPU");
 
     // Método para salvar um novo curso no banco de dados
     public void salvar(Turma turma){

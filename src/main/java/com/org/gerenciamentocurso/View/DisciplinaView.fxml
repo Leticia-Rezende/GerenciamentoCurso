@@ -28,7 +28,7 @@
             <Button fx:id="BtnsalvarDisciplina" onAction="#onBtnsalvarDisciplina" text="Salvar" />
             <Button fx:id="BtneditarDisciplina" onAction="#onBtneditarDisciplina" text="Editar" />
             <Button fx:id="BtnexcluirDisciplina" onAction="#onBtnxcluirDisciplina" text="Excluir" />
-            <Button fx:id="BtnatualizaListaDisciplina" onAction="#onBtnatualizarLista" text="Atualizar Lista" />
+            <Button fx:id="BtnatualizaListaDisciplina" onAction="#onBtnatualizarListaDisciplina" text="Atualizar Lista" />
         </HBox>
 
         <TableView fx:id="disciplinaTable">

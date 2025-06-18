@@ -30,7 +30,7 @@ public class CursoController {
     @FXML
     private Button BtnatualizaListaCurso;
 
-    private final CursoDAO cursoDAO = new CursoDAO();
+    //private final CursoDAO cursoDAO = new CursoDAO();
 
     @FXML
     public void initialize() {
@@ -42,7 +42,7 @@ public class CursoController {
     @FXML
     public void onBtnatualizarListaCurso() {
 
-        cursoTable.getItems().setAll(cursoDAO.buscarPorId(1L)); //Busca apenas pelo id 1
+        //cursoTable.getItems().setAll(cursoDAO.buscarPorId(1L)); //Busca apenas pelo id 1
     }
 
     @FXML
@@ -50,7 +50,7 @@ public class CursoController {
         Curso c = new Curso();
         c.setNome(nomeField.getText());
         c.setCargaHoraria(Integer.parseInt(cargaHorariaField.getText()));
-        cursoDAO.salvar(c);
+        //cursoDAO.salvar(c);
         onBtnatualizarListaCurso();
     }
 
@@ -60,7 +60,7 @@ public class CursoController {
         if (selecionado != null) {
             selecionado.setNome(nomeField.getText());
             selecionado.setCargaHoraria(Integer.parseInt(cargaHorariaField.getText()));
-            cursoDAO.editar(selecionado);
+            //cursoDAO.editar(selecionado);
             onBtnatualizarListaCurso();
         }
     }
@@ -69,7 +69,7 @@ public class CursoController {
     public void onBtnexcluirCurso() {
         Curso selecionado = cursoTable.getSelectionModel().getSelectedItem();
         if (selecionado != null) {
-            cursoDAO.excluir(selecionado.getId());
+            //cursoDAO.excluir(selecionado.getId());
             onBtnatualizarListaCurso();
         }
     }
