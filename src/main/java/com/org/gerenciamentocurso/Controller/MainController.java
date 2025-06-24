@@ -29,7 +29,6 @@ public class MainController {
         loadView("\\CursoView.fxml");
     }
 
-
     @FXML
     public void abrirProfessorView() {
 
@@ -61,5 +60,6 @@ public class MainController {
         } catch (IOException e) {
             System.out.println("Erro ao carregar a view: " + fxmlPath);
             e.printStackTrace();
-        } }
+        }
+    }
 }

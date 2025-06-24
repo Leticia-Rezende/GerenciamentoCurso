@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Curso {
 
     @Id
@@ -20,6 +21,8 @@ public class Curso {
     private int cargaHoraria;
 
     //1 : N Curso x Disciplina
-    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Disciplina> disciplinas;
+
 }
+

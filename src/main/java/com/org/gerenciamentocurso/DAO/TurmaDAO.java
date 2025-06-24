@@ -9,37 +9,62 @@ import jakarta.persistence.Persistence;
 
 import java.util.List;
 
+import static com.org.gerenciamentocurso.Utils.JPAUtil.factory;
+
 public class TurmaDAO {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("sistemaPU");
 
-    // Método para salvar um novo curso no banco de dados
+    // Create
     public void salvar(Turma turma){
-        //Cria uma instância do EntityManager
-        try (EntityManager em = emf.createEntityManager()) {
+        EntityManager em = factory.createEntityManager();
+        try {
             em.getTransaction().begin();
             em.persist(turma);
             em.getTransaction().commit();
-        }
-    }
-
-    //Metodo para editar uma materia existente no banco de dados
-    public void  editar (Turma sala){
-        try (EntityManager em = emf.createEntityManager()){
-            em.getTransaction().begin(); // Inicia uma transação
-            em.merge(sala); // Atualiza o objeto no banco de dados
-            em.getTransaction().commit(); // Confirma a transação
-        }
-    }
-
-    //Metodo para excluir um curso do banco de dados
-    public void excluir (Long id){
-        try (EntityManager em = emf.createEntityManager()){
-            em.getTransaction().begin(); //Inicia uma transação
-            Turma turma = em.find(Turma.class, id); // Busca o usuário pelo ID
-            if (turma!= null){
-                em.remove(turma); //Remove o curso do banco de dados
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
             }
-            em.getTransaction().commit(); //Confirma a transação
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+
+    //Update
+    public void  editar (Turma turma){
+        EntityManager em = factory.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            turma = em.merge(turma);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+
+    //Delete
+    public void excluir (Long id){
+        EntityManager em = factory.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Turma turma = em.find(Turma.class, id);
+            if (turma != null) {
+                em.remove(turma);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            em.close();
         }
     }
 

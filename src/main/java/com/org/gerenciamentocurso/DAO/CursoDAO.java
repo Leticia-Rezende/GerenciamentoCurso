@@ -13,60 +13,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CursoDAO {
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("sistemaPU");
+    //private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("sistemaPU");
 
-    // Método para salvar um novo curso no banco de dados
+    // Create
     public void salvar(Curso curso){
         //Cria uma instância do EntityManager
-        try (EntityManager em = emf.createEntityManager()) {
-            em.getTransaction().begin();
-            em.persist(curso);
-            em.getTransaction().commit();
-        }
+        EntityManager em = JPAUtil.getEntityManager();
+        em.getTransaction().begin();
+        em.persist(curso);
+        em.getTransaction().commit();
+        em.close();
     }
 
-    //Metodo para editar uma materia existente no banco de dados
-    public void  editar (Curso materia){
-        try (EntityManager em = emf.createEntityManager()){
-            em.getTransaction().begin(); // Inicia uma transação
-            em.merge(materia); // Atualiza o objeto no banco de dados
-            em.getTransaction().commit(); // Confirma a transação
-        }
+    //Update
+    public void  editar (Curso curso){
+        EntityManager em = JPAUtil.getEntityManager();
+        em.getTransaction().begin();
+        em.merge(curso);
+        em.getTransaction().commit();
+        em.close();
     }
 
-    //Metodo para excluir um curso do banco de dados
-    public void excluir (Long id){
-        try (EntityManager em = emf.createEntityManager()){
-            em.getTransaction().begin(); //Inicia uma transação
-            Curso curso = em.find(Curso.class, id); // Busca o usuário pelo ID
-            if (curso!= null){
-                em.remove(curso); //Remove o curso do banco de dados
-            }
-            em.getTransaction().commit(); //Confirma a transação
-        }
+    //Delete
+    public void excluir (Curso curso){
+        EntityManager em = JPAUtil.getEntityManager();
+        em.getTransaction().begin();
+        curso = em.merge(curso);
+        em.remove(curso);
+        em.getTransaction().commit();
+        em.close();
     }
 
     // Método para buscar curso por ID
     public Curso buscarPorId(Long id) {
-        try (EntityManager em =  JPAUtil.getEntityManager()) { //emf.createEntityManager())
-            return em.find(Curso.class, id); // Retorna o livro ou null se não encontrado
-        }
+        EntityManager em = JPAUtil.getEntityManager();
+        Curso curso = em.find(Curso.class, id);
+        em.close();
+        return curso;
     }
 
     //Metodo para listar todos os cursos dos bancos de dados
     public List<Curso> findAll() {
-        EntityManager em = emf.createEntityManager(); //Cria uma instância do EntityManeger
-        try {
-            //Executa uma consulta JPQL para buscar todos os usuários
-            return  em.createQuery("SELECT u FROM Curso u ", Curso.class).getResultList();
-        } finally {
-            em.close(); // Fecha o EntityManeher para liberar recursos
-        }
-    }
+        EntityManager em = JPAUtil.getEntityManager(); //Cria uma instância do EntityManeger
+        TypedQuery<Curso> query = em.createQuery("SELECT c FROM Curso c", Curso.class);
+        List<Curso> cursos = query.getResultList();
+        em.close();
+        return cursos;
 
-    // Metódo para fechar a fabrica de EntityManeger
-    public void fechar (){
-        emf.close(); //Fecha o EntityManegerGactory
     }
-
 }

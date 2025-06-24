@@ -20,6 +20,10 @@ public class Professor {
     private String formacao;
 
     // N : N Professor x Disciplina
-    @ManyToMany(mappedBy = "professores")
+    @ManyToMany
     private List<Disciplina> disciplinas;
+
+    @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Turma> turmas;
 }
+
