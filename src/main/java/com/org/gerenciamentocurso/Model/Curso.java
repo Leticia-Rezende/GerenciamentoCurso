@@ -23,6 +23,10 @@ public class Curso {
     //1 : N Curso x Disciplina
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Disciplina> disciplinas;
+    @Override
+    public String toString() {
+        return nome;
+    }
 
 }
 

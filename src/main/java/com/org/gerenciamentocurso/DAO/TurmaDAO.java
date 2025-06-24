@@ -6,13 +6,14 @@ import com.org.gerenciamentocurso.Utils.JPAUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
-import static com.org.gerenciamentocurso.Utils.JPAUtil.factory;
 
 public class TurmaDAO {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("sistemaPU");
+    private static EntityManagerFactory factory;
 
     // Create
     public void salvar(Turma turma){
@@ -85,9 +86,12 @@ public class TurmaDAO {
             em.close(); // Fecha o EntityManeher para liberar recursos
         }
     }
-
-    // Metódo para fechar a fabrica de EntityManeger
-    public void fechar (){
-        emf.close(); //Fecha o EntityManegerGactory
+    public List<Turma> findAll() {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Turma> query = em.createQuery("SELECT p FROM Turma p", Turma.class);
+        List<Turma> turmas = query.getResultList();
+        em.close();
+        return turmas;
     }
+
 }

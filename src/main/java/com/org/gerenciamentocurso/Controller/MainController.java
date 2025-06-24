@@ -1,21 +1,13 @@
 package com.org.gerenciamentocurso.Controller;
 
 import com.org.gerenciamentocurso.Utils.PathFXML;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URL;
+
 
 public class MainController {
     @FXML

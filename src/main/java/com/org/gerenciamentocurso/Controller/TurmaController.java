@@ -1,5 +1,7 @@
 package com.org.gerenciamentocurso.Controller;
 
+import com.org.gerenciamentocurso.DAO.DisciplinaDAO;
+import com.org.gerenciamentocurso.DAO.ProfessorDAO;
 import com.org.gerenciamentocurso.DAO.TurmaDAO;
 import com.org.gerenciamentocurso.Model.Disciplina;
 import com.org.gerenciamentocurso.Model.Professor;
@@ -10,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.List;
 
 public class TurmaController {
     @FXML
@@ -44,6 +48,8 @@ public class TurmaController {
     private ObservableList<Disciplina> disciplinaList = FXCollections.observableArrayList();
     private ObservableList<Professor> professorList = FXCollections.observableArrayList();
     private TurmaDAO turmaDAO = new TurmaDAO(); // Instance of TurmaDAO
+    private DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
+    private ProfessorDAO professorDAO = new ProfessorDAO();
     private Turma turmaEditar = null;
 
     @FXML
@@ -57,12 +63,12 @@ public class TurmaController {
         professorComboBox.setItems(professorList);
         turmaTable.setItems(turmaList);
         carregarTurmas();
+
     }
 
     @FXML
     public void onBtnatualizarListaTurma() {
-
-        //turmaTable.getItems().setAll(turmaDAO.buscarPorId(1L));
+        carregarTurmas();
     }
 
     @FXML
@@ -103,7 +109,7 @@ public class TurmaController {
 
         Turma selectedTurma = turmaTable.getSelectionModel().getSelectedItem();
         if (selectedTurma != null) {
-            turmaEditar = selectedTurma; // Mark selected turma as being edited
+            turmaEditar = selectedTurma;
             semestreField.setText(String.valueOf(selectedTurma.getSemestre()));
             disciplinaComboBox.setValue(selectedTurma.getDisciplina());
             professorComboBox.setValue(selectedTurma.getProfessor());
@@ -113,20 +119,21 @@ public class TurmaController {
         }
     }
     private void carregarTurmas() {
+        List<Disciplina> disciplinas = disciplinaDAO.findAll();
+        disciplinaComboBox.setItems(FXCollections.observableArrayList(disciplinas));
+
+        List<Professor> professores = professorDAO.findAll();
+        professorComboBox.setItems(FXCollections.observableArrayList(professores));
+
         turmaList.clear();
         turmaList.addAll(turmaDAO.findAll()); // Load all turmas from the database
     }
 
     @FXML
     public void onBtnexcluirTurma() {
-        Turma selecionada = turmaTable.getSelectionModel().getSelectedItem();
-        if (selecionada != null) {
-            //turmaDAO.excluir(selecionada.getId());
-            onBtnatualizarListaTurma();
-        }
-        Turma selecionada = turmaTable.getSelectionModel().getSelectedItem();
-        if (selecionada != null) {
-            turmaDAO.excluir(selecionada);
+        Turma turmaselecionada = turmaTable.getSelectionModel().getSelectedItem();
+        if (turmaselecionada != null) {
+            turmaDAO.excluir(turmaselecionada.getId());
             carregarTurmas();
         } else {
             Alerta.exibirAlerta("Erro", null, "Selecione uma turma para excluir do banco de dados.", Alert.AlertType.WARNING);

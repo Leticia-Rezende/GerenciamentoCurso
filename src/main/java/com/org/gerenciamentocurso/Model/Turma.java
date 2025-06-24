@@ -15,8 +15,6 @@ public class Turma {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String semestre;
-    //private String disciplina;
-    //private String professor;
     private String horario;
 
     // N : 1 Turma x Disciplina

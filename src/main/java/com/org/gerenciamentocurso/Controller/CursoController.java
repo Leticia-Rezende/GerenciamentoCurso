@@ -39,6 +39,8 @@ public class CursoController {
     public void initialize() {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colCargaHoraria.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
+        cursoTable.setItems(cursoList);
+
         onBtnatualizarListaCurso();
     }
 
@@ -46,7 +48,6 @@ public class CursoController {
     public void onBtnatualizarListaCurso() {
         cursoList.clear();
         cursoList.addAll(cursoDAO.findAll());
-        //cursoTable.getItems().setAll(cursoDAO.buscarPorId(1L)); //Busca apenas pelo id 1
     }
 
     @FXML
@@ -86,11 +87,27 @@ public class CursoController {
     public void onBtneditarCurso() {
         Curso selecionado = cursoTable.getSelectionModel().getSelectedItem();
         if (selecionado != null) {
-            cursoEditar = selecionado;
-            selecionado.setNome(nomeField.getText());
-            selecionado.setCargaHoraria(Integer.parseInt(cargaHorariaField.getText()));
-            cursoDAO.editar(selecionado);
-            onBtnatualizarListaCurso();
+            String cargaHorariaText = cargaHorariaField.getText();
+
+            if (cargaHorariaText != null && !cargaHorariaText.trim().isEmpty()) {
+                try {
+
+                    int cargaHoraria = Integer.parseInt(cargaHorariaText);
+                    cursoEditar = selecionado;
+                    selecionado.setNome(nomeField.getText());
+                    selecionado.setCargaHoraria(cargaHoraria);
+
+                    cursoDAO.editar(selecionado);
+                    onBtnatualizarListaCurso();
+
+                } catch (NumberFormatException e) {
+
+                    Alerta.exibirAlerta("Erro de Formato", null, "A Carga Horária deve ser um número inteiro válido.", Alert.AlertType.ERROR);
+                }
+            } else {
+
+                Alerta.exibirAlerta("Campo Vazio", null, "O campo 'Carga Horária' não pode estar vazio.", Alert.AlertType.WARNING);
+            }
         } else {
             Alerta.exibirAlerta("Erro", null, "Selecione um curso para fazer a edição!", Alert.AlertType.WARNING);
         }

@@ -1,5 +1,6 @@
 package com.org.gerenciamentocurso.Controller;
 
+import com.org.gerenciamentocurso.DAO.CursoDAO;
 import com.org.gerenciamentocurso.DAO.DisciplinaDAO;
 import com.org.gerenciamentocurso.Model.Curso;
 import com.org.gerenciamentocurso.Model.Disciplina;
@@ -11,7 +12,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.ReadOnlyStringWrapper;
 
-public class DisciplinaController {
+import java.util.List;
+
+public class DisciplinaController  {
     @FXML
     private TextField nomeField;
     @FXML private TextField descricaoField;
@@ -33,7 +36,10 @@ public class DisciplinaController {
     private ObservableList<Curso> cursoList = FXCollections.observableArrayList();
     private DisciplinaDAO disciplinaDAO = new DisciplinaDAO(); // Instance of DisciplinaDAO
     private Disciplina disciplinaEditar = null;
+    private CursoDAO cursoDAO = new CursoDAO();
     private void carregarDisciplinas() {
+        List<Curso> cursos = cursoDAO.findAll();
+        cursoComboBox.setItems(FXCollections.observableArrayList(cursos));
         disciplinaList.clear();
         disciplinaList.addAll(disciplinaDAO.findAll()); // Load all disciplines from the database
     }
@@ -43,10 +49,9 @@ public class DisciplinaController {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         colCurso.setCellValueFactory(c -> new ReadOnlyStringWrapper(c.getValue().getCurso().getNome()));
-
         cursoComboBox.setItems(cursoList);
-
-        onBtnatualizarListaDisciplina();
+        disciplinaTable.setItems(disciplinaList);
+        carregarDisciplinas();
     }
 
     @FXML
@@ -107,4 +112,5 @@ public class DisciplinaController {
             Alerta.exibirAlerta("Erro", null, "Selecione uma disciplina para excluir do banco de dados.", Alert.AlertType.WARNING);
         }
     }
+
 }

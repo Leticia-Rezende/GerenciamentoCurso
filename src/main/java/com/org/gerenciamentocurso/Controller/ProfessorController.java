@@ -48,7 +48,7 @@ public class ProfessorController {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colFormacao.setCellValueFactory(new PropertyValueFactory<>("formacao"));
-
+        professorTable.setItems(professorList);
         onBtnatualizarListaProfessor();
         carregarProfessores();
     }
